@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday!</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+
+  <canvas id="canvas-overlay"></canvas>
+
+  <div class="container">
+ 
+    <header class="title-banner">
+      <h1> Happy Birthday to mee! </h1>
+      <p>Click the cake candles to blow them out, then click the gift!</p>
+    </header>
+
+  
+    <div class="cake-container" id="cake" title="Click to blow out candles!">
+      <div class="candles">
+        <div class="candle">
+          <div class="flame" id="flame1"></div>
+          <div class="smoke" id="smoke1"></div>
+        </div>
+        <div class="candle">
+          <div class="flame" id="flame2"></div>
+          <div class="smoke" id="smoke2"></div>
+        </div>
+        <div class="candle">
+          <div class="flame" id="flame3"></div>
+          <div class="smoke" id="smoke3"></div>
+        </div>
+      </div>
+      <div class="cake"></div>
+    </div>
+
+    
+    <div class="gift-section">
+      <div class="gift-box" id="giftBox" title="Click to open your gift!">
+        <div class="gift-lid"></div>
+        <div class="gift-ribbon-v"></div>
+        <div class="gift-ribbon-h"></div>
+      </div>
+    </div>
+
+ 
+    <div class="wish-card" id="wishCard">
+      <h2 id="recipientTitle"> To My Special Day! 🎉</h2>
+      <p id="wishText">
+        May my day be filled with joy, laughter, endless smiles, and lots of cake! 
+        Wishing me for another wonderful year of health, happiness, and extraordinary adventures! 🌟
+      </p>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" id="musicBtn">🎵 Play Birthday Music</button>
+        <button class="btn btn-secondary" id="confettiBtn">🎊 More Confetti!</button>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div id="balloon-container"></div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
 
