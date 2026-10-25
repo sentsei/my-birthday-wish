@@ -1,1 +1,350 @@
+:root {
+  --primary: #ff4757;
+  --secondary: #2ed573;
+  --accent: #ffa502;
+  --purple: #70a1ff;
+  --pink: #ff78ae;
+  --bg-dark: #0f111e;
+  --card-bg: rgba(255, 255, 255, 0.92);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1e0538 0%, #0f111e 60%, #2a0845 100%);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+
+#canvas-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+
+.container {
+  width: 90%;
+  max-width: 650px;
+  margin: 30px auto;
+  text-align: center;
+  z-index: 5;
+}
+
+.title-banner {
+  margin-bottom: 25px;
+  animation: fadeInDown 1.2s ease-out;
+}
+
+.title-banner h1 {
+  font-size: 3rem;
+  background: linear-gradient(45deg, #ff4757, #ffa502, #2ed573, #70a1ff, #ff78ae);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s ease infinite;
+  text-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.title-banner p {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin-top: 8px;
+}
+
+
+.cake-container {
+  position: relative;
+  width: 220px;
+  height: 200px;
+  margin: 30px auto;
+  cursor: pointer;
+}
+
+.cake {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 100px;
+  background: #f78fb3;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 8px 0 #cf6a87, inset 0 12px 0 #f8a5c2;
+}
+
+.cake::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: -10px;
+  width: 200px;
+  height: 40px;
+  background: #78e08f;
+  border-radius: 20px;
+  box-shadow: inset 0 -6px 0 #60a3bc;
+}
+
+.cake::after {
+  content: '';
+  position: absolute;
+  top: 35px;
+  left: 0;
+  width: 180px;
+  height: 20px;
+  background: #f8c291;
+}
+
+
+.candles {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 25px;
+  z-index: 2;
+}
+
+.candle {
+  width: 12px;
+  height: 45px;
+  background: repeating-linear-gradient(45deg, #70a1ff, #70a1ff 5px, #ffffff 5px, #ffffff 10px);
+  border-radius: 3px;
+  position: relative;
+}
+
+.flame {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 20px;
+  background: #ffa502;
+  border-radius: 50% 50% 20% 20%;
+  box-shadow: 0 0 15px #ffa502, 0 0 25px #ff4757;
+  animation: flicker 0.6s infinite alternate;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.flame.out {
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+}
+
+.smoke {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: rgba(200, 200, 200, 0.6);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.smoke.active {
+  animation: smokeRise 1.5s ease-out forwards;
+}
+
+
+.gift-section {
+  margin: 30px 0;
+}
+
+.gift-box {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: #ff4757;
+  margin: 0 auto;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 71, 87, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.gift-box:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.gift-ribbon-v {
+  position: absolute;
+  left: 40px;
+  width: 20px;
+  height: 100%;
+  background: #ffa502;
+}
+
+.gift-ribbon-h {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  height: 20px;
+  background: #ffa502;
+}
+
+.gift-lid {
+  position: absolute;
+  top: -12px;
+  left: -5px;
+  width: 110px;
+  height: 22px;
+  background: #ff6b81;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.5s ease;
+}
+
+.gift-box.open .gift-lid {
+  transform: translateY(-50px) rotate(-20deg);
+  opacity: 0;
+}
+
+
+.wish-card {
+  background: var(--card-bg);
+  color: #2f3542;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  margin-top: 25px;
+  display: none;
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  text-align: center;
+}
+
+.wish-card h2 {
+  color: #ff4757;
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.wish-card p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #57606f;
+  margin-bottom: 20px;
+}
+
+
+.btn-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #ff4757, #ff6b81);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 71, 87, 0.4);
+}
+
+.btn-secondary {
+  background: linear-gradient(45deg, #70a1ff, #1e90ff);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(112, 161, 255, 0.4);
+}
+
+
+.balloon {
+  position: fixed;
+  bottom: -100px;
+  width: 50px;
+  height: 65px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  opacity: 0.8;
+  z-index: 1;
+  animation: floatUp 8s linear infinite;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes flicker {
+  0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+  100% { transform: translateX(-50%) scale(1.1) rotate(2deg); }
+}
+
+@keyframes smokeRise {
+  0% { opacity: 0.8; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -40px) scale(3); }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+  100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+@media (max-width: 480px) {
+  .title-banner h1 { font-size: 2.2rem; }
+  .wish-card { padding: 20px; }
+  .cake-container { transform: scale(0.85); }
+}
 
